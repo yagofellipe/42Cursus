@@ -17,7 +17,7 @@ int ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	return (0);
 }
-
+/*
 int main() {
     unsigned char memory1[] = {0x10, 0x20, 0x30, 0x40, 0x50};
     unsigned char memory2[] = {0x10, 0x20, 0x35, 0x40, 0x55};
@@ -35,3 +35,4 @@ int main() {
 
     return 0;
 }
+*/
