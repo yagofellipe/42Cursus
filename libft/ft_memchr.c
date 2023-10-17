@@ -10,11 +10,11 @@ void	*ft_memchr(const void *s, int c, size_t n)
 	while (i < n)
 	{
 		if (sun[i] == (unsigned char)c)
-			return (sun[i]);
+			return (void*)(sun + i);
 		i++;
 	}
 }
-
+/*
 int	main()
 {
 	unsigned char memory[] = {0x10, 0x20, 0x30, 0x40, 0x50};
@@ -30,4 +30,4 @@ int	main()
 
 	return (0);
 }
-
+*/
