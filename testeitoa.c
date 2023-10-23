@@ -1,17 +1,16 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
 
+#include <stdlib.h>
+#include <unistd.h>
 long int ft_len(int n)
 {
 	int	tam;
 	
 	tam = 0;
 	if (n == 0)
-		return 1;
+		return (1);
 	if (n < 0)
 	{
-        	tam++;
+		tam++;
 		n = -n;
 	}
 	while (n != 0)
@@ -19,15 +18,15 @@ long int ft_len(int n)
 		tam++;
 		n /= 10;
 	}
-	return tam;
+	return (tam);
 }
+
 
 char	*ft_itoa(int n)
 {
-	char				*str;
-	long int			len;
-	unsigned int		number;
-
+	long int	len;
+	char	*str;
+	
 	len = ft_len(n);
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (str == NULL)
@@ -37,14 +36,13 @@ char	*ft_itoa(int n)
 		str[0] = '0';
 	if (n < 0)
 	{
-		
 		n = n * -1;
 		str[0] = '-';
 	}
 	while (n > 0)
 	{
 		str[len--] = 48 + (n % 10);
-		n = n / 10;
+		n = n /10;
 	}
 	return (str);
 }
