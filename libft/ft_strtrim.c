@@ -65,7 +65,7 @@ char *ft_strtrim(const char *s1, const char *set) {
 
     return trimmed;
 }
-
+/*
 #include <stdio.h>
 
 int main() {
@@ -82,3 +82,4 @@ const char s1[] = "   Hello, world!   ";
 
     return 0;
 }
+*/

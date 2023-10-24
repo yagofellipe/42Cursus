@@ -27,12 +27,14 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	while (big[i] != '\0' && i < len)
 	{
 		j = 0;
-		while (big[i + j] == little[j])
+		while (big[i + j] == little[j] && (i + j) < len)
 		{
-			if (j == little_len - 1)
-				return ((char *)(big + i));
+			if (big[i + j] == '\0' && little[j] == '\0')
+				return ((char *)&big[i]);
 			j++;
 		}
+		if (little[j] == '\0')
+			return ((char *)(big + i));
 		i++;
 	}
 	return (NULL);

@@ -1,15 +1,27 @@
-#include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/10/24 10:34:33 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/24 10:34:35 by yfellipe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
+#include "libft.h"
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
 	size_t	tam;
 	size_t	i;
 	void	*alloc;
+
 	tam = nmemb * size;
 	alloc = malloc(tam);
 	if (alloc == NULL)
-		return NULL;
+		return (NULL);
 	i = 0;
 	if (alloc != NULL)
 	{
@@ -19,7 +31,6 @@ void	*ft_calloc(size_t nmemb, size_t size)
 			i++;
 		}
 	}
-	
 	return (alloc);
 }
 /*
@@ -34,11 +45,11 @@ int main() {
     }
 
     for (int i = 0; i < 10; i++) {
-        printf("%d ", array[i]); // Todos os elementos devem ser inicializados como 0.
+        printf("%d ", array[i]); // Todos os elementos 
+        //devem ser inicializados como 0.
     }
 
     free(array); // Lembre-se de liberar a memória quando terminar de usá-la.
     
     return 0;
-}
-*/
+}*/
