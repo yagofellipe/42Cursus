@@ -33,14 +33,14 @@ void	*ft_memcpyy(void *dest, const void *src, size_t n)
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
 	char	*s;
-	char	*cdst;
+	char	*d;
 
 	s = (char *)src;
-	cdst = (char *)dest;
+	d = (char *)dest;
 	if (dest > src)
 	{
 		while ((int)--n >= 0)
-			cdst[n] = s[n];
+			d[n] = s[n];
 	}
 	if (src > dest)
 		ft_memcpyy(dest, src, n);

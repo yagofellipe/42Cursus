@@ -12,38 +12,25 @@
 
 #include "libft.h"
 
-size_t	ft_strlen(const char *s)
-{
-	int	len;
-
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	return (len);
-}
-
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int			i;
 	int			lens1;
 	int			lens2;
 	char		*join;
 
+	if (!s1 && !s2)
+		return (ft_strdup(""));
+	if (s1 && !s2)
+		return (ft_strdup(s1));
+	if (!s1 && s2)
+		return (ft_strdup(s2));
 	lens1 = ft_strlen(s1);
 	lens2 = ft_strlen(s2);
 	join = malloc(sizeof(char) * (lens1 + lens2 + 1));
 	if (join == NULL)
 		return (NULL);
-	i = 0;
-	while (i < lens1 + lens2)
-	{
-		if (i < lens1)
-			join[i] = s1[i];
-		else
-			join[i] = s2[i - lens1];
-		i++;
-	}
-	join[i] = '\0';
+	ft_strlcpy(join, s1, lens1 + 1);
+	ft_strlcat(join, s2, lens1 + lens2 + 1);
 	return (join);
 }
 /*

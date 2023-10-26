@@ -12,23 +12,15 @@
 
 #include "libft.h"
 
-size_t	len(const char *s)
-{
-	int	tam;
-
-	tam = 0;
-	while (s[tam] != '\0')
-		tam++;
-	return (tam);
-}
-
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	int			tam;
 	int			i;
 	char		*end;
 
-	tam = len(s);
+	if (!s)
+		return (ft_strdup(""));
+	tam = ft_strlen(s);
 	end = (char *)malloc(sizeof(char) * (tam + 1));
 	if (end == NULL)
 		return (NULL);
@@ -41,7 +33,6 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	end[i] = '\0';
 	return (end);
 }
-
 /*
 char char_to_upper(unsigned int index, char c) {
     if (c >= 'a' && c <= 'z') {

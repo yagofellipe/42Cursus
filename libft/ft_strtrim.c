@@ -10,67 +10,34 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "libft.h"
 
-
-int ft_strlen(const char *s) {
-    int len = 0;
-
-    while (s[len] != '\0')
-        len++;
-
-    return len;
-}
-
-char *ft_strchr(const char *s, int c)
+char	*ft_strtrim(const char *s1, const char *set)
 {
-	if (!*s)
-		return (0);
-	while (*s != '\0')
-	{
-		if(*s == c) // int c permite encontrar na tabela ascii
-			return (char *)s;
-		
-		s++;
-	}
-	if (c == '\0')
-        	return (char *)s;
-	return (0);
-}
+	int		i;
+	int		j;
+	char	*trimmed;
 
-char *ft_strtrim(const char *s1, const char *set) {
-    int i = 0;
-    int j;
-    int trilen = 0;
-
-    trilen = ft_strlen(s1) - ft_strlen(set);
-
-    char *trimmed = (char *)malloc(sizeof(char) * (trilen + 1));
-
-    if (trimmed == NULL)
-        return NULL;
-
-    i = 0;
-    j = 0;
-
-    while (s1[i] != '\0') {
-        if (ft_strchr(set, s1[i]) == NULL) {
-            trimmed[j] = s1[i];
-            j++;
-        }
-        i++;
-    }
-
-    trimmed[j] = '\0'; // Null-terminate the trimmed string
-
-    return trimmed;
+	if (s1 == NULL)
+		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
+	i = 0;
+	j = ft_strlen(s1) - 1;
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	while (s1[j] && ft_strchr(set, s1[j]))
+		j--;
+	trimmed = ft_substr(s1, i, j - i + 1);
+	return (trimmed);
 }
 /*
 #include <stdio.h>
 
 int main() {
-const char s1[] = "   Hello, world!   ";
-    const char set[] = "He";
+	char s1[] = "          ";
+
+    const char set[] = "5";
     char *trimmed = ft_strtrim(s1, set);
 
     if (trimmed != NULL) {
@@ -81,5 +48,4 @@ const char s1[] = "   Hello, world!   ";
     }
 
     return 0;
-}
-*/
+}*/

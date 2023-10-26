@@ -38,43 +38,33 @@ size_t	countwords(const char *s, char c)
 	return (n_words);
 }
 
-char	*ft_strncpy(char *dest, const char *from, size_t t)
+static void	ft_allocate(char **tab, char const *s, char sep)
 {
-	char	*dest_start;
+	char		**tab_p;
+	char const	*tmp;
 
-	dest_start = dest;
-	while (t > 0 && (*from != '\0'))
+	tmp = s;
+	tab_p = tab;
+	while (*tmp)
 	{
-		*dest_start++ = *from++;
-		t--;
+		while (*s == sep)
+			++s;
+		tmp = s;
+		while (*tmp && *tmp != sep)
+			++tmp;
+		if (*tmp == sep || tmp > s)
+		{
+			*tab_p = ft_substr(s, 0, tmp - s);
+			s = tmp;
+			++tab_p;
+		}
 	}
-	while (t > 0)
-	{
-		*dest_start = '\0';
-		t--;
-	}
-	return (dest_start);
-}
-
-char	*ft_strndup(const char *str, size_t n)
-{
-	char	*dup;
-
-	dup = (char *)malloc(n + 1);
-	if (dup != NULL)
-	{
-		ft_strncpy(dup, str, n);
-		dup[n] = '\0';
-	}
-	return (dup);
+	*tab_p = NULL;
 }
 
 char	**ft_split(char const *s, char c)
 {
-	int		i;
-	int		word;
 	int		num_words;
-	int		word_len;
 	char	**ptr;
 
 	if (!s)
@@ -83,25 +73,7 @@ char	**ft_split(char const *s, char c)
 	ptr = (char **)malloc((num_words + 1) * sizeof(char *));
 	if (ptr == NULL)
 		return (NULL);
-	i = 0;
-	word = 0;
-	while (s[i] && word < num_words)
-	{
-		while (s[i] == c && s[i])
-			i++;
-		if (s[i] != c)
-		{
-			word_len = 0;
-			while (s[i + word_len] && s[i + word_len] != c)
-				word_len++;
-			ptr[word] = ft_strndup(&s[i], word_len);
-			if (!ptr[word])
-				return (NULL);
-			word++;
-			i += word_len;
-		}
-	}
-	ptr[word] = (NULL);
+	ft_allocate(ptr, s, c);
 	return (ptr);
 }
 /*

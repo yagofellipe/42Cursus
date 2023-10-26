@@ -16,13 +16,11 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
 	char	*new;
-	size_t	slen;
 
-	slen = 0;
-	while (s[slen] != '\0')
-		slen++;
-	if (s == NULL || start >= slen)
+	if (s == NULL)
 		return (NULL);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
 	i = 0;
 	new = malloc(sizeof(char) * (len + 1));
 	if (new == NULL)
