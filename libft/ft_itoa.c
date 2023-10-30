@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-long int	ft_len(int n)
+static long int	ft_len(int n)
 {
 	int	tam;
 
@@ -32,7 +32,7 @@ long int	ft_len(int n)
 	return (tam);
 }
 
-char	*ft_strcpy(char *dest, char *src)
+static char	*ft_strcpy(char *dest, char *src)
 {
 	int	i;
 
@@ -72,19 +72,3 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-/*
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-int	main()
-{
-	int	num;
-	char	*novo;
-	
-	num = -16432131;
-	novo = ft_itoa(num);
-	
-	write(1, novo, ft_len(num));
-
-	return 0;
-}*/

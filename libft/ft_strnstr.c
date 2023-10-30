@@ -36,22 +36,3 @@ char	*ft_strnstr(const char *big, const char *little, size_t len)
 	}
 	return (0);
 }
-/*
-#include <stdio.h>
-int main() 
-{
-    const char *haystack = "Hello, World!";
-    const char *needle = "World";
-    size_t max_length = ft_strlen(haystack); 
-
-    char *result = ft_strnstr(haystack, needle, max_length);
-
-    if (result) {
-        printf("Substring encontrada: %s\n", result);
-    } else {
-        printf("Substring não encontrada.\n");
-    }
-
-    return 0;
-}
-*/

@@ -32,38 +32,3 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 	}
 	return (len);
 }
-/*
-#include "libft.h"
-#include <stdio.h>
-#include <string.h>
-
-int main() {
-    char source[] = "Hello, World!";
-    char destination[20]; // Área de memória de destino
-    size_t size = sizeof(destination);
-
-   
-    size_t result = ft_strlcpy(destination, source, size);
-
-
-    printf("String de Destino após ft_strlcpy: %s\n", destination);
-
-    if (strcmp(source, destination) == 0) {
-        printf("A cópia ocorreu corretamente.\n");
-    } else {
-        printf("A cópia NÃO ocorreu corretamente.\n");
-    }
-
-
-    size_t source_length = strlen(source);
-    if (result == source_length) {
-        printf("O valor retornado corresponde ao tamanho 
-        da string de origem.\n");
-    } else {
-        printf("O valor retornado NÃO corresponde ao
-         tamanho da string de origem.\n");
-    }
-
-    return 0;
-}
-*/

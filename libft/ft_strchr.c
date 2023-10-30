@@ -22,21 +22,3 @@ char	*ft_strchr(const char *s, int c)
 	}
 	return ((char *)s);
 }
-/*
-int main() {
-    const char *text = "Hello, World!";
-    char target = 'o';
-
-    char *result = ft_strchr(text, target);
-
-    if (result) {
-        printf("Caractere '%c' encontrado na posição:
-         %ld\n", target, result - text);
-    } else {
-        printf("Caractere '%c' não encontrado na 
-        string.\n", target);
-    }
-
-    return 0;
-}
-*/

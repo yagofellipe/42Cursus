@@ -35,21 +35,3 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	new[i] = '\0';
 	return (new);
 }
-/*
-int main() {
-    char const *original_str = "Exemplo de substring";
-    unsigned int start = 8;
-    size_t len = 8;
-
-    char *result = ft_substr(original_str, start, len);
-
-    if (result) {
-        printf("Substring: %s\n", result);
-        free(result);
-    } else {
-        printf("Erro na alocação de memória.\n");
-    }
-
-    return 0;
-}
-*/

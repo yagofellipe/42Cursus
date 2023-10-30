@@ -36,11 +36,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return (result * sign);
 }
-/*
-#include <stdio.h>
-int main() {
-    const char *numeroTexto = "-12345";
-    int numero = atoi(numeroTexto);
-    printf("O número convertido é: %d\n", numero);
-    return 0;
-}*/

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-void	*ft_memcpyy(void *dest, const void *src, size_t n)
+static void	*ft_memcpyy(void *dest, const void *src, size_t n)
 {
 	size_t	i;
 
@@ -46,28 +46,3 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 		ft_memcpyy(dest, src, n);
 	return (dest);
 }
-/*
-#include <string.h>
-int main() {
-    char source[] = "Hello, World!";
-    char destination[50]; // Área de memória de destino
-
-    // Exibindo a string de origem
-    printf("String de Origem: %s\n", source);
-
-    // Usando a função memmove para copiar dados da origem para o destino
-    size_t n = ft_strlen(source);
-    memmove(destination, source, n);
-
-    // Exibindo a string de destino após memmove
-    printf("String de Destino após memmove: %s\n", destination);
-
-    // Verificando se a cópia foi bem-sucedida
-    if (strcmp(source, destination) == 0) {
-        printf("A cópia foi bem-sucedida.\n");
-    } else {
-        printf("A cópia NÃO foi bem-sucedida.\n");
-    }
-
-    return 0;
-}*/

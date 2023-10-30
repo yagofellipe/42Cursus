@@ -36,18 +36,3 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size)
 	dst[d] = 0;
 	return (sizedest + sizesrc);
 }
-/*
-int main() {
-    char destination[20] = "Hello, ";
-    const char source[] = "world!";
-    size_t max_length = 20;
-
-    size_t result = ft_strlcat(destination, source, max_length);
-
-    printf("Resultado: %s\n", destination);
-    printf("Comprimento total: %zu\n", result);
-
-    return 0;
-}
-
-*/

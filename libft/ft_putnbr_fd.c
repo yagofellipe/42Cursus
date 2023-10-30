@@ -13,7 +13,7 @@
 #include "libft.h"
 #include <unistd.h>
 
-void	ft_putchar(char c, int fd)
+static void	ft_putchar(char c, int fd)
 {
 	write(fd, &c, 1);
 }
@@ -36,11 +36,3 @@ void	ft_putnbr_fd(int n, int fd)
 	else
 		ft_putchar(nb + '0', fd);
 }
-/*
-int main() {
-    int n = 1852;
-    int fd = 1; // 1 is the file descriptor for standard output (stdout)
-
-    ft_putnbr_fd(n, fd);
-    return 0;
-}*/

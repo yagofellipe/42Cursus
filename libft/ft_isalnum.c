@@ -19,14 +19,3 @@ int	ft_isalnum(int c)
 		return (1);
 	return (0);
 }
-/*
-#include <stdio.h>
-int	main()
-{
-	if (ft_isalnum('9') == 1)
-		printf("é digito");
-	if (ft_isalnum('a') == 1)
-		printf("é alpha");
-	return 0;
-}
-*/

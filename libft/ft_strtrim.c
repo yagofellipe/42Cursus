@@ -31,21 +31,3 @@ char	*ft_strtrim(const char *s1, const char *set)
 	trimmed = ft_substr(s1, i, j - i + 1);
 	return (trimmed);
 }
-/*
-#include <stdio.h>
-
-int main() {
-	char s1[] = "          ";
-
-    const char set[] = "5";
-    char *trimmed = ft_strtrim(s1, set);
-
-    if (trimmed != NULL) {
-        printf("Trimmed string: \"%s\"\n", trimmed);
-        free(trimmed);
-    } else {
-        printf("Memory allocation failed.\n");
-    }
-
-    return 0;
-}*/

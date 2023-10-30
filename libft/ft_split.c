@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-size_t	countwords(const char *s, char c)
+static size_t	countwords(const char *s, char c)
 {
 	size_t	index;
 	size_t	n_words;
@@ -76,28 +76,3 @@ char	**ft_split(char const *s, char c)
 	ft_allocate(ptr, s, c);
 	return (ptr);
 }
-/*
-#include <stdlib.h>
-#include <stdio.h>
-int main() 
-{
-    const char *input = "Esta é uma string que você deseja dividir.";
-    char delimiter = ' ';
-
-    char **tokens = ft_split(input, delimiter);
-
-    if (tokens) {
-        int i = 0;
-        while (tokens[i]) {
-            printf("Token %d: %s\n", i, tokens[i]);
-            free(tokens[i]);
-            i++;
-        }
-
- 
-    } else {
-        printf("Erro na função ft_split");
-    }
-
-    return 0;
-}*/
