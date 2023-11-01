@@ -1,18 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 10:34:52 by yfellipe          #+#    #+#             */
-/*   Updated: 2023/10/24 10:34:54 by yfellipe         ###   ########.fr       */
+/*   Created: 2023/10/24 10:08:48 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/24 10:08:50 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putchar(char c)
+char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	write(1, &c, 1);
+	size_t	i;
+	char	*new;
+
+	if (s == NULL)
+		return (NULL);
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
+	i = 0;
+	new = malloc(sizeof(char) * (len + 1));
+	if (new == NULL)
+		return (NULL);
+	while (s[start] != '\0' && len > 0)
+	{
+		new[i] = s[start];
+		i++;
+		start++;
+		len--;
+	}
+	new[i] = '\0';
+	return (new);
 }

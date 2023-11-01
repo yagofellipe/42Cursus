@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 10:34:52 by yfellipe          #+#    #+#             */
-/*   Updated: 2023/10/24 10:34:54 by yfellipe         ###   ########.fr       */
+/*   Created: 2023/10/23 13:56:17 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/23 13:56:26 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putchar(char c)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	write(1, &c, 1);
+	size_t	i;
+
+	i = 0;
+	while ((s1[i] || s2[i]) && i < n)
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
+	}
+	return (0);
 }

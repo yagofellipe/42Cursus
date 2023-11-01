@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 10:34:52 by yfellipe          #+#    #+#             */
-/*   Updated: 2023/10/24 10:34:54 by yfellipe         ###   ########.fr       */
+/*   Created: 2023/10/24 10:07:48 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/24 10:07:51 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putchar(char c)
+void	ft_bzero(void *s, size_t n)
 {
-	write(1, &c, 1);
+	size_t	i;
+	char	*str;
+
+	i = 0;
+	str = s;
+	while (i < n)
+	{
+		str[i] = 0;
+		i++;
+	}
 }

@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 10:34:52 by yfellipe          #+#    #+#             */
-/*   Updated: 2023/10/24 10:34:54 by yfellipe         ###   ########.fr       */
+/*   Created: 2023/10/23 13:25:02 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/23 13:25:03 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putchar(char c)
+char	*ft_strtrim(const char *s1, const char *set)
 {
-	write(1, &c, 1);
+	int		i;
+	int		j;
+	char	*trimmed;
+
+	if (s1 == NULL)
+		return (NULL);
+	if (!set)
+		return (ft_strdup(s1));
+	i = 0;
+	j = ft_strlen(s1) - 1;
+	while (s1[i] && ft_strchr(set, s1[i]))
+		i++;
+	while (s1[j] && ft_strchr(set, s1[j]))
+		j--;
+	trimmed = ft_substr(s1, i, j - i + 1);
+	return (trimmed);
 }

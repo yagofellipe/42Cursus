@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 10:34:52 by yfellipe          #+#    #+#             */
-/*   Updated: 2023/10/24 10:34:54 by yfellipe         ###   ########.fr       */
+/*   Created: 2023/10/23 13:34:22 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/23 13:34:24 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putchar(char c)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	write(1, &c, 1);
+	int			tam;
+	int			i;
+	char		*end;
+
+	if (!s)
+		return (ft_strdup(""));
+	tam = ft_strlen(s);
+	end = (char *)malloc(sizeof(char) * (tam + 1));
+	if (end == NULL)
+		return (NULL);
+	i = 0;
+	while (i < tam)
+	{
+		end[i] = (*f)(i, s[i]);
+		i++;
+	}
+	end[i] = '\0';
+	return (end);
 }

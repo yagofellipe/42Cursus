@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 10:34:52 by yfellipe          #+#    #+#             */
-/*   Updated: 2023/10/24 10:34:54 by yfellipe         ###   ########.fr       */
+/*   Created: 2023/10/23 13:24:31 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/23 13:24:34 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putchar(char c)
+char	*ft_strrchr(const char *s, int c)
 {
-	write(1, &c, 1);
+	int		i;
+	char	*temp;
+
+	temp = (char *)s;
+	i = 0;
+	while (temp[i] != '\0')
+		i++;
+	while (i >= 0)
+	{
+		if (temp[i] == (char)c)
+			return (&temp[i]);
+		i--;
+	}
+	return (NULL);
 }

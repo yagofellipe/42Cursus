@@ -1,18 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 10:34:52 by yfellipe          #+#    #+#             */
-/*   Updated: 2023/10/24 10:34:54 by yfellipe         ###   ########.fr       */
+/*   Created: 2023/10/23 13:24:51 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/23 13:24:54 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putchar(char c)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	write(1, &c, 1);
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	if (!*little)
+		return ((char *)big);
+	while (i < len && big[i] != 0)
+	{
+		if (little[0] == big[i])
+		{
+			j = 0;
+			while (big[i + j] == little[j] && ((j + i) < len))
+			{
+				j++;
+				if (little[j] == '\0')
+					return ((char *)big + i);
+			}
+		}
+		i++;
+	}
+	return (0);
 }

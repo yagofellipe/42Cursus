@@ -1,18 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 10:34:52 by yfellipe          #+#    #+#             */
-/*   Updated: 2023/10/24 10:34:54 by yfellipe         ###   ########.fr       */
+/*   Created: 2023/10/24 10:34:33 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/24 10:34:35 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-void	ft_putchar(char c)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	write(1, &c, 1);
+	size_t	tam;
+	size_t	i;
+	void	*alloc;
+
+	tam = nmemb * size;
+	alloc = malloc(tam);
+	if (alloc == NULL)
+		return (NULL);
+	i = 0;
+	if (alloc != NULL)
+	{
+		while (i < tam)
+		{
+			((char *)alloc)[i] = 0;
+			i++;
+		}
+	}
+	return (alloc);
 }
