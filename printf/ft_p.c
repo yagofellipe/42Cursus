@@ -1,18 +1,20 @@
+
 #include "ft_printf.h"
 
-void	ft_p(void *ptr)
+int	ft_p(void *ptr)
 {
 	unsigned long long	addr;
 	int	i;
 	int	digit;
+	int	tam;
 	char	hex[16];
 
 	addr = (unsigned long long) ptr;
 	i = 0;
 	if (addr == 0)
 	{
-		write(1, "0x0", 3);
-		return ;
+		write(1, "0x", 2);
+		return (10);
 	}
 	while (addr > 0)
 	{
@@ -25,9 +27,11 @@ void	ft_p(void *ptr)
 		addr /= 16;
 	}
 	write(1, "0x", 2);
+	tam = i;
 	while(i > 0)
 	{
-		i--
+		i--;
 		write(1, &hex[i],1);
 	}
+	return (tam);
 }

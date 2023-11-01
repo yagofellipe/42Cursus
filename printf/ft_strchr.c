@@ -1,20 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isascii.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 10:08:05 by yfellipe          #+#    #+#             */
-/*   Updated: 2023/10/24 10:08:07 by yfellipe         ###   ########.fr       */
+/*   Created: 2023/10/23 13:53:26 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/23 13:53:29 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_isascii(int c)
+char	*ft_strchr(const char *s, int c)
 {
-	if (c >= 0 && c <= 127)
-		return (1);
-	return (0);
+	while (*s != (char)c)
+	{
+		if (!*s)
+			return (0);
+		s++;
+	}
+	return ((char *)s);
 }

@@ -1,6 +1,7 @@
+
 #include "ft_printf.h"
 
-void	ft_d(int args)
+int	ft_d(int n)
 {
 	int				nb;
 	unsigned int	i;

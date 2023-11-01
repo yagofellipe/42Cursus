@@ -1,12 +1,33 @@
-#include "ft_printf.h"
 
-void	ft_s(char *args)
+#include <stdlib.h>
+#include <unistd.h>
+
+void	ft_putstr(char *str)
 {
-	if (!args)
-		ft_putstr_fd("", 1);
-	while(args)
-		args++;
-	ft_putstr_fd(args, 1);
-	return (0);
+	int	i;
 
+	i = 0;
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+}
+
+int	ft_s(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
+	}
+	return (i);
 }
