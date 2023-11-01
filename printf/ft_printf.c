@@ -12,33 +12,36 @@
 
 #include "ft_printf.h"
 
-void	verif(const char *p, va_list args)
+static int	verif(const char *p, void *args)
 {
 	int	i;
 
 	i = 0;
 	if (*p == 'c')
-		ft_c((int*)args);
+		i += ft_c((int)arg);
 	else if (*p == 's')
-		ft_s((char*)args);
+		i += ft_s((char *)arg);
 	else if (*p == 'p')
-		ft_p((unsigned long*)args);
+		i += ft_p((unsigned long)arg, 87);
 	else if (*p == 'd')
-		ft_d((int*)args);
+		i += ft_d((int)arg);
 	else if (*p == 'i')
-		ft_d((int*)args);
+		i += ft_d((int)arg);
 	else if (*p == 'u')
-		ft_u((unsigned int*)args);
+		i += ft_u((unsigned int)arg);
 	else if (*p == 'x')
-		ft_x((unsigned int*)args);
-	else if(*p == 'X')
-		ft_X((int*)args);	
+		i += ft_x((unsigned int)arg, 87);
+	else if (*p == 'X')
+		i += ft_X((unsigned int)arg, 55);
+	return (i);
 }
 
 int	ft_printf(const char *format, ...)
 {
-	va_list	args;
+	va_list			args;
+	unsigned int	i;
 
+	i = 0;
 	va_start(args, format);
 	while (*format)
 	{
@@ -46,14 +49,14 @@ int	ft_printf(const char *format, ...)
 		{
 			format++;
 			if (ft_strchr("cspdiuxX", *format))
-				verif(format, va_arg(format,args,));
+				i += verif(format, va_arg(args, void *));
 			else if (*format == '%')
-				ft_putchar_fd('%', 1);
+				i += verif('%');
 		}
 		else
-			ft_putchar_fd(*format, 1);
+			i = i + print_char(*format);
 		format++;
 	}
 	va_end(args);
-	return (0);
+	return (i);
 }
