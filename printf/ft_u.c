@@ -1,7 +1,4 @@
-
-
-#include <stdlib.h>
-#include <unistd.h>
+#include "ft_printf.h"
 
 int	ft_num_len(unsigned	int num)
 {

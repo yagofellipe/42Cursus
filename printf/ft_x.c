@@ -48,22 +48,3 @@ int	ft_x(unsigned int num, const char format)
 		ft_put_hex(num, format);
 	return (ft_hex_len(num));
 }
-
-int main() {
-    unsigned int test_values[] = {100, 42, 255, 4095, 65535};  // Exemplos de valores inteiros não assinados
-    char formats[] = {'x', 'X'};  // Formatos 'x' e 'X'
-
-    for (int i = 0; i < sizeof(test_values) / sizeof(test_values[0]); i++) {
-        unsigned int value = test_values[i];
-        
-        for (int j = 0; j < sizeof(formats) / sizeof(formats[0]); j++) {
-            char format = formats[j];
-
-
-            ft_x(value, format);
-
-        }
-    }
-
-    return 0;
-}

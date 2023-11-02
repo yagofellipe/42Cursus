@@ -12,6 +12,17 @@
 
 #include "ft_printf.h"
 
+char	*ft_strchr(const char *s, int c)
+{
+	while (*s != (char)c)
+	{
+		if (!*s)
+			return (0);
+		s++;
+	}
+	return ((char *)s);
+}
+
 static int	verif(va_list args, const char *format)
 {
 	int	i;
@@ -27,8 +38,10 @@ static int	verif(va_list args, const char *format)
 		i += ft_d(va_arg(args, int));
 	else if (*format == 'u')
 		i += ft_u(va_arg(args, unsigned int));
-	else if (*format == 'x' || *format == 'X')
-		i += ft_x(va_arg(args, unsigned int), format);
+	else if (*format == 'x')
+    		i += ft_x(va_arg(args, unsigned int), 'x');
+	else if (*format == 'X')
+    		i += ft_x(va_arg(args, unsigned int), 'X');
 	return (i);
 }
 
@@ -55,15 +68,4 @@ int	ft_printf(const char *format, ...)
 	}
 	va_end(args);
 	return (i);
-}
-
-#include <stdio.h>
-#include "ft_printf.h" // Certifique-se de incluir o arquivo de cabeçalho correto aqui
-
-int main() {
-	char hello = "hello";
-    // Exemplo de uso de ft_printf
-    ft_printf("%s", hello);
-
-    return 0;
 }
