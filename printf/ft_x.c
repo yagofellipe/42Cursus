@@ -6,7 +6,7 @@ void	ft_putchar_fd(char c, int fd)
 	write(fd, &c, 1);
 }
 
-int	ft_hex_len(unsigned	int num)
+int	ft_hex_len(unsigned	long num)
 {
 	int	len;
 
@@ -19,7 +19,7 @@ int	ft_hex_len(unsigned	int num)
 	return (len);
 }
 
-void	ft_put_hex(unsigned int num, const char format)
+void	ft_put_hex(unsigned long num, const char format)
 {
 	if (num >= 16)
 	{
@@ -40,7 +40,7 @@ void	ft_put_hex(unsigned int num, const char format)
 	}
 }
 
-int	ft_x(unsigned int num, const char format)
+int	ft_x(unsigned long num, const char format)
 {
 	if (num == 0)
 		return (write(1, "0", 1));
