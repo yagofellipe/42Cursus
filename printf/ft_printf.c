@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
-
 #include "ft_printf.h"
 
 char	*ft_strchr(const char *s, int c)
@@ -41,9 +39,9 @@ static int	verif(va_list args, const char *format)
 	else if (*format == 'u')
 		i += ft_u(va_arg(args, unsigned int));
 	else if (*format == 'x')
-    		i += ft_x(va_arg(args, unsigned int), 'x');
+		i += ft_x(va_arg(args, unsigned int), 'x');
 	else if (*format == 'X')
-    		i += ft_x(va_arg(args, unsigned int), 'X');
+		i += ft_x(va_arg(args, unsigned int), 'X');
 	return (i);
 }
 

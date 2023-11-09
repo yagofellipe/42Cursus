@@ -60,5 +60,3 @@ int	ft_u(unsigned int n)
 	}
 	return (print_length);
 }
-
-

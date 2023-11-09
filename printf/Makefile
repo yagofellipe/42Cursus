@@ -1,7 +1,6 @@
 NAME = libftprintf.a
 CC = cc
 CFLAGS = -Wall -Werror -Wextra
-LIBFTDIR = ./libft
 
 SRCS = 	ft_printf.c \
 		ft_p.c \
@@ -26,3 +25,5 @@ fclean: clean
 	@rm -f $(NAME)
 	
 re: fclean all
+
+.PHONY: all clean fclean re
