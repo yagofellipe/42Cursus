@@ -68,4 +68,3 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_strlcat(join, s2, lens1 + lens2 + 1);
 	return (join);
 }
-
