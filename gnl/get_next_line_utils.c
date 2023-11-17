@@ -12,59 +12,78 @@
 
 #include "get_next_line.h"
 
-size_t	ft_strlen(const char *s)
+char	*ft_strdup(const char *s)
+{
+	size_t		size;
+	size_t		i;
+	char		*string;
+
+	i = 0;
+	while (s[i])
+		i++;
+	size = (i + 1);
+	string = (char *)malloc(size * sizeof(char));
+	if (!string)
+		return (NULL);
+	i = 0;
+	while (i < size)
+	{
+		string[i] = s[i];
+		i++;
+	}
+	return (string);
+}
+
+char	*ft_strchr(const char *s, int c)
+
 {
 	int	i;
 
 	i = 0;
-	while (s[i] != '\0')
+	if (!s)
+		return (NULL);
+	while (s[i])
+	{
+		if (s[i] == (char) c)
+			return ((char *)&s[i]);
+		i++;
+	}
+	return (NULL);
+}
+
+size_t	ft_strlen(const char	*s)
+
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
 		i++;
 	return (i);
 }
 
-char	*ft_strdup(const char *s)
+char	*ft_strjoin(const char *s1, const char *s2)
 {
-	size_t		len;
-	char		*new;
+	char		*string;
+	size_t		i;
+	size_t		j;
 
-	len = ft_strlen(s) + 1;
-	if (s == NULL)
+	if (!s1)
+		s1 = ft_strdup("");
+	if (!s1 || !s2)
 		return (NULL);
-	new = (char *)malloc(sizeof(char) * len);
-	if (new == NULL)
+	i = 0;
+	j = 0;
+	string = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!string)
 		return (NULL);
-	return ((char *)ft_memcpy(new, s, len));
-}
-
-char	*ft_strchr(const char *s, int c)
-{
-	while (*s != (char)c)
+	while (s1[i])
 	{
-		if (!*s)
-			return (0);
-		s++;
+		string[i] = s1[i];
+		i++;
 	}
-	return ((char *)s);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	int			lens1;
-	int			lens2;
-	char		*join;
-
-	if (!s1 && !s2)
-		return (ft_strdup(""));
-	if (s1 && !s2)
-		return (ft_strdup(s1));
-	if (!s1 && s2)
-		return (ft_strdup(s2));
-	lens1 = ft_strlen(s1);
-	lens2 = ft_strlen(s2);
-	join = malloc(sizeof(char) * (lens1 + lens2 + 1));
-	if (join == NULL)
-		return (NULL);
-	ft_strlcpy(join, s1, lens1 + 1);
-	ft_strlcat(join, s2, lens1 + lens2 + 1);
-	return (join);
+	while (s2[j])
+		string[i++] = s2[j++];
+	string[i] = '\0';
+	return (string);
 }
