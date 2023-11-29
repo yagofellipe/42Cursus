@@ -62,7 +62,7 @@ size_t	ft_strlen(const char	*s)
 	return (i);
 }
 
-char	*ft_strjoin(const char *s1, const char *s2)
+char	*ft_strjoin(char *s1, char *s2)
 {
 	char		*string;
 	size_t		i;
@@ -74,7 +74,7 @@ char	*ft_strjoin(const char *s1, const char *s2)
 		return (NULL);
 	i = 0;
 	j = 0;
-	string = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	string = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
 	if (!string)
 		return (NULL);
 	while (s1[i])
@@ -85,5 +85,6 @@ char	*ft_strjoin(const char *s1, const char *s2)
 	while (s2[j])
 		string[i++] = s2[j++];
 	string[i] = '\0';
+	free(s1);
 	return (string);
 }

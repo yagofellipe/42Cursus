@@ -102,29 +102,3 @@ char	*get_next_line(int fd)
 	backup = remaining(backup);
 	return (my_line);
 }
-
-
-
-#include <stdio.h>
-#include <fcntl.h>
-#include <stdlib.h>
-
-int main() 
-{
-    int fd = open("teste.txt", O_RDONLY); // Substitua com seu arquivo de teste
-
-    if (fd < 0) {
-        perror("Erro ao abrir o arquivo");
-        return 1;
-    }
-
-    char *line;
-    while ((line = get_next_line(fd)) != NULL) {
-        printf("Linha lida: %s\n", line);
-        free(line); // Libere a memória alocada para cada linha
-    }
-
-    close(fd); // Feche o arquivo após a leitura
-
-    return 0;
-}
