@@ -18,12 +18,13 @@ int	main()
 		printf("Eu sou o processo filho (PID: %d)\n", getpid());
         	char *args[] = {"git", "commit", "-m", "Mensagem do commit", NULL};
         	// Executa o comando git commit no processo filho
+        	sleep(60);
         	if (execv("/usr/bin/git", args) == -1)
         	{
 			perror("Erro ao executar o git commit");
 			return 1;
 		}
-		sleep(10);
+		
 		printf("Processo filho encerrado.\n");
 	}
 	else
