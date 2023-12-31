@@ -1,41 +1,29 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: tchaves <tchaves@student.42.fr>            +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/08/17 10:41:14 by tchaves           #+#    #+#              #
-#    Updated: 2023/10/30 14:55:18 by tchaves          ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+NAME = libftprintf.a
+CC = cc
+CFLAGS = -Wall -Werror -Wextra
 
-CC		= cc
-CFLAGS	= -Wall -Wextra -Werror
-RM		= rm -f
+SRCS = 	ft_printf.c \
+		ft_p.c \
+		ft_u.c \
+		ft_s.c \
+		ft_d.c \
+		ft_c.c \
+		ft_x.c \
 
-NAME	= libftprintf.a
+OBJS = $(SRCS:.c=.o)
 
-SRCS	= ft_printf.c ft_strchr.c check_format.c ft_putchar.c \
-			ft_puthex.c ft_putnbr.c ft_putstr.c \
-			ft_putunsnbr.c \
+all: $(NAME)
 
-OBJS	= $(SRCS:.c=.o)
-
-.c.o:
-			$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
-
-all:		$(NAME)
-
-$(NAME):	$(OBJS)
-			ar -rcs $(NAME) $(OBJS)
+$(NAME): $(OBJS)
+	@ar -r $(NAME) $(OBJS)
 
 clean:
-			$(RM) $(OBJS)
+	@rm -f $(OBJS)
+	
+	
+fclean: clean
+	@rm -f $(NAME)
+	
+re: fclean all
 
-fclean:		clean
-			$(RM) $(NAME)
-
-re:			fclean all
-
-.PHONY:		all clean fclean re
+.PHONY: all clean fclean re

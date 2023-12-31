@@ -3,70 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchaves <tchaves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 10:55:28 by tchaves           #+#    #+#             */
-/*   Updated: 2023/10/23 10:59:18 by tchaves          ###   ########.fr       */
+/*   Created: 2023/10/24 10:35:16 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/24 10:35:18 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//this function converts an integer into a null-terminated string
-
 #include "libft.h"
 
-static int	ft_count_digits(int n)
+static long int	ft_len(int n)
 {
-	int	count;
+	int	tam;
 
-	count = 0;
+	tam = 0;
 	if (n == 0)
-		count++;
+		return (1);
 	if (n < 0)
 	{
-		count *= -1;
-		count++;
+		tam++;
+		n = -n;
 	}
 	while (n != 0)
 	{
-		count++;
+		tam++;
 		n /= 10;
 	}
-	return (count);
+	return (tam);
 }
 
-static char	*transform(char *str, int n, int len)
+static char	*ft_strcpy(char *dest, char *src)
 {
-	while (n > 0)
+	int	i;
+
+	i = 0;
+	while (src[i] != '\0')
 	{
-		str[len--] = (n % 10) + '0';
-		n /= 10;
+		dest[i] = src[i];
+		i++;
 	}
-	return (str);
+	dest[i] = '\0';
+	return (dest);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	int		len;
+	char				*str;
+	long int			len;
 
-	len = ft_count_digits(n);
-	str = malloc(sizeof(char) * len + 1);
-	if (!str)
+	len = ft_len(n);
+	str = (char *)malloc(sizeof(char) * (len + 1));
+	if (str == NULL)
 		return (NULL);
+	str[len--] = '\0';
 	if (n == -2147483648)
-	{
-		str[0] = '-';
-		str[1] = '2';
-		n = 147483648;
-	}
-	if (n < 0)
-	{
-		str[0] = '-';
-		n *= -1;
-	}
+		ft_strcpy(str, "-2147483648");
 	if (n == 0)
 		str[0] = '0';
-	str[len--] = '\0';
-	transform(str, n, len);
+	if (n < 0)
+	{
+		n = n * -1;
+		str[0] = '-';
+	}
+	while (n > 0)
+	{
+		str[len--] = 48 + (n % 10);
+		n = n / 10;
+	}
 	return (str);
 }

@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
+/*   ft_c.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchaves <tchaves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yfellipe <yfellipe@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 16:58:03 by tchaves           #+#    #+#             */
-/*   Updated: 2023/10/25 10:34:36 by tchaves          ###   ########.fr       */
+/*   Created: 2023/11/06 16:02:06 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/11/06 16:02:09 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void *))
+int	ft_c(int c)
 {
-	if (!lst || !del)
-		return ;
-	del(lst->content);
-	free(lst);
+	ft_putchar_fd(c, 1);
+	return (1);
 }

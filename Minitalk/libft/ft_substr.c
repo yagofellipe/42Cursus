@@ -3,41 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchaves <tchaves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/16 11:47:00 by tchaves           #+#    #+#             */
-/*   Updated: 2023/10/25 10:25:56 by tchaves          ###   ########.fr       */
+/*   Created: 2023/10/24 10:08:48 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/24 10:08:50 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// This function is used to create a substring and 
-// traverse it based on the provided start position and length
 
 #include "libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
 	size_t	i;
-	char	*dest;
-	size_t	sizelen;
+	char	*new;
 
-	if (!s)
+	if (s == NULL)
 		return (NULL);
-	sizelen = ft_strlen(s);
-	if (start > sizelen)
+	if (start >= ft_strlen(s))
 		return (ft_strdup(""));
-	else if (start + len > sizelen)
-		len = sizelen - start;
-	dest = ft_calloc(len + 1, sizeof(char));
-	if (!dest)
-		return (NULL);
 	i = 0;
-	while (s[start] && i < len)
+	new = malloc(sizeof(char) * (len + 1));
+	if (new == NULL)
+		return (NULL);
+	while (s[start] != '\0' && len > 0)
 	{
-		dest[i] = s[start];
+		new[i] = s[start];
 		i++;
 		start++;
+		len--;
 	}
-	dest[i] = '\0';
-	return (dest);
+	new[i] = '\0';
+	return (new);
 }

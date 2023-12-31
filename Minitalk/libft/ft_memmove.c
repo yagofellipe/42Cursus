@@ -3,44 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchaves <tchaves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 12:14:08 by tchaves           #+#    #+#             */
-/*   Updated: 2023/10/27 10:54:56 by tchaves          ###   ########.fr       */
+/*   Created: 2023/10/24 10:17:47 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/24 10:17:51 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// This function is useful to copy a block of memory
-// from one location to another
-// Unlike memcpy, it is safer to use when there is overlap between 
-// the source and destination areas.
-
 #include "libft.h"
+
+static void	*ft_memcpyy(void *dest, const void *src, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	if (!dest && !src)
+		return (NULL);
+	if (dest != src)
+	{
+		while (i < n)
+		{
+			((unsigned char *)dest)[i] = ((unsigned char *)src)[i];
+			i++;
+		}
+	}
+	return (dest);
+}
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	unsigned char		*d;
-	const unsigned char	*s;
+	char	*s;
+	char	*d;
 
-	s = (const unsigned char *)src;
-	d = (unsigned char *)dest;
-	if (!dest && !src)
-		return (NULL);
-	if (d < s || d >= s + n)
+	s = (char *)src;
+	d = (char *)dest;
+	if (dest > src)
 	{
-		while (n--)
-		{
-			*d++ = *s++;
-		}
+		while ((int)--n >= 0)
+			d[n] = s[n];
 	}
-	else
-	{
-		d += n;
-		s += n;
-		while (n--)
-		{
-			*(--d) = *(--s);
-		}
-	}
+	if (src > dest)
+		ft_memcpyy(dest, src, n);
 	return (dest);
 }

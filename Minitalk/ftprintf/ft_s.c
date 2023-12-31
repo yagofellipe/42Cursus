@@ -1,26 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_s.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchaves <tchaves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yfellipe <yfellipe@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/24 16:57:07 by tchaves           #+#    #+#             */
-/*   Updated: 2023/10/24 16:57:14 by tchaves          ###   ########.fr       */
+/*   Created: 2023/11/06 16:03:57 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/11/06 16:03:59 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "ft_printf.h"
 
-int	ft_lstsize(t_list *lst)
+void	ft_putstr(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (lst != NULL)
+	while (str[i])
 	{
+		write(1, &str[i], 1);
 		i++;
-		lst = lst->next;
+	}
+}
+
+int	ft_s(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str == NULL)
+	{
+		ft_putstr("(null)");
+		return (6);
+	}
+	while (str[i])
+	{
+		write(1, &str[i], 1);
+		i++;
 	}
 	return (i);
 }

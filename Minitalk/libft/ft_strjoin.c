@@ -3,41 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchaves <tchaves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/10 17:12:04 by tchaves           #+#    #+#             */
-/*   Updated: 2023/10/25 10:27:17 by tchaves          ###   ########.fr       */
+/*   Created: 2023/10/23 13:33:12 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/23 13:33:15 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// This function is designed to concatenate two string into a new string
 
 #include "libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char	*str;
-	size_t	i;
-	size_t	j;
+	int			lens1;
+	int			lens2;
+	char		*join;
 
-	if (!s1 || !s2)
+	if (!s1 && !s2)
+		return (ft_strdup(""));
+	if (s1 && !s2)
+		return (ft_strdup(s1));
+	if (!s1 && s2)
+		return (ft_strdup(s2));
+	lens1 = ft_strlen(s1);
+	lens2 = ft_strlen(s2);
+	join = malloc(sizeof(char) * (lens1 + lens2 + 1));
+	if (join == NULL)
 		return (NULL);
-	str = (char *)malloc(sizeof(s1) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (!str)
-		return (NULL);
-	i = 0;
-	j = 0;
-	while (s1[i])
-	{
-		str[j++] = s1[i];
-		i++;
-	}
-	i = 0;
-	while (s2[i])
-	{
-		str[j++] = s2[i];
-		i++;
-	}
-	str[j] = 0;
-	return (str);
+	ft_strlcpy(join, s1, lens1 + 1);
+	ft_strlcat(join, s2, lens1 + lens2 + 1);
+	return (join);
 }

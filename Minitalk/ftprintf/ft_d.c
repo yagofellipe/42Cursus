@@ -1,22 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_d.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: yfellipe <yfellipe@student.42.rio>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/23 12:58:12 by yfellipe          #+#    #+#             */
-/*   Updated: 2023/10/23 12:58:14 by yfellipe         ###   ########.fr       */
+/*   Created: 2023/11/06 16:04:25 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/11/06 16:04:27 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include <unistd.h>
-
-static void	ft_putchar(char c, int fd)
-{
-	write(fd, &c, 1);
-}
+#include "ft_printf.h"
 
 void	ft_putnbr_fd(int n, int fd)
 {
@@ -31,8 +25,31 @@ void	ft_putnbr_fd(int n, int fd)
 	if (nb > 9)
 	{
 		ft_putnbr_fd(nb / 10, fd);
-		ft_putchar((nb % 10) + '0', fd);
+		ft_putchar_fd((nb % 10) + '0', fd);
 	}
 	else
-		ft_putchar(nb + '0', fd);
+		ft_putchar_fd(nb + '0', fd);
+}
+
+int	ft_d(int n)
+{
+	int				nb;
+	unsigned int	i;
+
+	nb = n;
+	i = 1;
+	if (n < 0 && n != -2147483648)
+	{
+		nb = -n;
+		i++;
+	}
+	while (nb > 9)
+	{
+		nb = nb / 10;
+		i++;
+	}
+	ft_putnbr_fd(n, 1);
+	if (n == -2147483648)
+		return (11);
+	return (i);
 }

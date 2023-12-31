@@ -3,26 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchaves <tchaves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/11 10:25:39 by tchaves           #+#    #+#             */
-/*   Updated: 2023/10/25 10:41:56 by tchaves          ###   ########.fr       */
+/*   Created: 2023/10/24 10:08:35 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/24 10:08:36 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// This function is used to fill a block of memory with a specific value. 
-// It is useful for initializing variables, setting defaults in arrays, 
-// and performing other memory initialization operations."
 
 #include "libft.h"
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	char		*str;
-	size_t		i;
+	size_t	i;
+	char	*str;
 
-	str = (char *)s;
 	i = 0;
+	str = s;
 	while (i < n)
 	{
 		str[i] = c;

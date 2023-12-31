@@ -3,35 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tchaves <tchaves@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/10/17 14:26:59 by tchaves           #+#    #+#             */
-/*   Updated: 2023/10/25 10:29:29 by tchaves          ###   ########.fr       */
+/*   Created: 2023/10/23 13:34:22 by yfellipe          #+#    #+#             */
+/*   Updated: 2023/10/23 13:34:24 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-// This function is designed to apply a given function (f) 
-// that will iterate through each index of the string and allocate the result 
-// of the loop into a new string
 
 #include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	unsigned int	i;
-	char			*str;
+	int			tam;
+	int			i;
+	char		*end;
 
 	if (!s)
+		return (ft_strdup(""));
+	tam = ft_strlen(s);
+	end = (char *)malloc(sizeof(char) * (tam + 1));
+	if (end == NULL)
 		return (NULL);
 	i = 0;
-	str = (char *)malloc(ft_strlen(s) + 1);
-	if (!str || !f)
-		return (NULL);
-	while (s[i] != '\0')
+	while (i < tam)
 	{
-		str[i] = f(i, s[i]);
+		end[i] = (*f)(i, s[i]);
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	end[i] = '\0';
+	return (end);
 }
