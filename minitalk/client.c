@@ -13,7 +13,7 @@ void	send_signal(int pid, char signal)
 		}
 		else
 			kill(pid, SIGUSR2);
-		usleep(200);
+		usleep(300);
 		i--;
 	}	
 }
