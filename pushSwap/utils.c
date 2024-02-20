@@ -26,7 +26,14 @@ void	ft_free(void **mat)
 
 	i = 0;
 	while (mat[i])
+<<<<<<< HEAD
 		free(mat[i++]);
+=======
+	{
+		free(mat[i]);
+		i++;
+	}
+>>>>>>> 30b92e65cf423ff28fa7a56888142c44844302e3
 	free(mat);
 }
 

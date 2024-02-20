@@ -1,4 +1,18 @@
+<<<<<<< HEAD
 
+=======
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_args.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/08 09:24:34 by yfellipe          #+#    #+#             */
+/*   Updated: 2024/02/08 09:24:38 by yfellipe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+>>>>>>> 30b92e65cf423ff28fa7a56888142c44844302e3
 
 #include "../includes/push_swap.h"
 
@@ -56,8 +70,13 @@ void	check_args(char **argv, int argc)
 		args = ft_split(argv[1], ' ');
 	else
 	{
+<<<<<<< HEAD
 		args = argv;
 		i = 1;
+=======
+		i = 1;
+		args = argv;
+>>>>>>> 30b92e65cf423ff28fa7a56888142c44844302e3
 	}
 	while (args[i])
 	{
@@ -66,5 +85,10 @@ void	check_args(char **argv, int argc)
 		i++;
 	}
 	if (argc == 2)
+<<<<<<< HEAD
 		ft_free((void **)args); // tem que dar free  por causa do malloc da split
 }
+=======
+		ft_free((void **)args);
+}
+>>>>>>> 30b92e65cf423ff28fa7a56888142c44844302e3
