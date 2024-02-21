@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_big.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yfellipe <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/02/21 09:31:36 by yfellipe          #+#    #+#             */
+/*   Updated: 2024/02/21 09:31:39 by yfellipe         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
@@ -10,10 +21,27 @@ static int	get_max_bits(t_list **stack)
 	max_bits = 0;
 	while (max)
 	{
-    	max >>= 1;
-    	max_bits++;
-  	}
+		max >>= 1;
+		max_bits++;
+	}
 	return (max_bits);
+}
+
+static void	sort_b(t_list **stack_a, t_list **stack_b, int max_bit, int bit)
+{
+	int	size;
+
+	size = ft_lstsize(*stack_b);
+	while (size-- && bit <= max_bit && !is_sorted(stack_a))
+	{
+		if ((((*stack_b)->index >> bit) & 1) == 0)
+			rb(stack_b);
+		else
+			pa(stack_a, stack_b);
+	}
+	if (is_sorted(stack_a))
+		while (ft_lstsize(*stack_b) != 0)
+			pa(stack_a, stack_b);
 }
 
 void	sort_big(t_list **stack_a, t_list **stack_b)

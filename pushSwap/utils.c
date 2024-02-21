@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 void	ft_error(char *msg, char **args, int argc)
 {
@@ -26,14 +26,7 @@ void	ft_free(void **mat)
 
 	i = 0;
 	while (mat[i])
-<<<<<<< HEAD
 		free(mat[i++]);
-=======
-	{
-		free(mat[i]);
-		i++;
-	}
->>>>>>> 30b92e65cf423ff28fa7a56888142c44844302e3
 	free(mat);
 }
 
@@ -87,16 +80,4 @@ int	invalid_input(char *str)
 	if (str[final] == ' ' && (count_nums(str, ' ') > 1))
 		return (1);
 	return (0);
-}
-
-void	ft_putendl_fd(char *s, int fd)
-{
-	if (!s)
-		return ((void) NULL);
-	while (*s)
-	{
-		write (fd, s, 1);
-		s++;
-	}
-	write (fd, "\n", 1);
 }
