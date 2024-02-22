@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 static int	get_max_bits(t_list **stack)
 {
@@ -19,11 +19,8 @@ static int	get_max_bits(t_list **stack)
 
 	max = get_max_index(stack);
 	max_bits = 0;
-	while (max)
-	{
-		max >>= 1;
+	while ((max >> max_bits) != 0)
 		max_bits++;
-	}
 	return (max_bits);
 }
 

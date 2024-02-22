@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 int	rotate_stack(t_list **stack)
 {
@@ -47,6 +47,6 @@ int	rr(t_list **stack_a, t_list **stack_b)
 {
 	if (rotate_stack(stack_a) == -1 || rotate_stack(stack_b) == -1)
 		return (-1);
-	ft_putendl_fd("rr", 1)
+	ft_putendl_fd("rr", 1);
 	return (0);
 }

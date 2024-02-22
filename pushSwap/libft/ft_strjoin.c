@@ -14,22 +14,19 @@
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {
-	int			lens1;
-	int			lens2;
-	char		*join;
+	char	*s;
+	char	*pos;
 
-	if (!s1 && !s2)
-		return (ft_strdup(""));
-	if (s1 && !s2)
-		return (ft_strdup(s1));
-	if (!s1 && s2)
-		return (ft_strdup(s2));
-	lens1 = ft_strlen(s1);
-	lens2 = ft_strlen(s2);
-	join = malloc(sizeof(char) * (lens1 + lens2 + 1));
-	if (join == NULL)
+	if (!s1 || !s2)
+		return (0);
+	s = (char *)malloc(sizeof (char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (s == NULL)
 		return (NULL);
-	ft_strlcpy(join, s1, lens1 + 1);
-	ft_strlcat(join, s2, lens1 + lens2 + 1);
-	return (join);
+	pos = s;
+	while (*s1)
+		*s++ = *s1++;
+	while (*s2)
+		*s++ = *s2++;
+	*s = '\0';
+	return (pos);
 }

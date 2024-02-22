@@ -14,22 +14,11 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t	tam;
-	size_t	i;
-	void	*alloc;
+	void	*array;
 
-	tam = nmemb * size;
-	alloc = malloc(tam);
-	if (alloc == NULL)
+	array = (void *)malloc(nmemb * size);
+	if (array == NULL)
 		return (NULL);
-	i = 0;
-	if (alloc != NULL)
-	{
-		while (i < tam)
-		{
-			((char *)alloc)[i] = 0;
-			i++;
-		}
-	}
-	return (alloc);
+	ft_bzero(array, (nmemb * size));
+	return (array);
 }

@@ -14,14 +14,19 @@
 
 char	*ft_strdup(const char *s)
 {
-	size_t		len;
-	char		*new;
+	char	*s1;
+	char	*s2;
+	char	*pos;
 
-	len = ft_strlen(s) + 1;
-	if (s == NULL)
+	s1 = (char *)s;
+	s2 = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!s2)
 		return (NULL);
-	new = (char *)malloc(sizeof(char) * len);
-	if (new == NULL)
-		return (NULL);
-	return ((char *)ft_memcpy(new, s, len));
+	pos = s2;
+	while (*s1)
+	{
+		*s2++ = *s1++;
+	}
+	*s2 = 0;
+	return (pos);
 }

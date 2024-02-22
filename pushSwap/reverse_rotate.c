@@ -10,12 +10,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "push_swap.h"
 
 int	rev_rotate_stack(t_list **stack)
 {
 	t_list	*head;
-	t_lsit	*tail;
+	t_list	*tail;
 
 	if (ft_lstsize(*stack) < 2)
 		return (-1);
@@ -23,14 +23,16 @@ int	rev_rotate_stack(t_list **stack)
 	tail = ft_lstlast(head);
 	while (head)
 	{
+		if (head->next->next == NULL)
 		{
 			head->next = NULL;
-			tail->next = head;
-			*stack = tail;
+			break ;
 		}
-		return (0);
+		head = head->next;
 	}
-	head = head->next;
+	tail->next = *stack;
+	*stack = tail;
+	return (0);
 }
 
 int	rra(t_list **stack_a)
@@ -51,8 +53,10 @@ int	rrb(t_list **stack_b)
 
 int	rrr(t_list **stack_a, t_list **stack_b)
 {
-	if (rev_rotate_stack(stack_a) == -1 || rev_rotate_stack(stack_b) == -1)
+	if ((ft_lstsize(*stack_a) < 2) || (ft_lstsize(*stack_b) < 2))
 		return (-1);
+	rev_rotate_stack(stack_a);
+	rev_rotate_stack(stack_b);
 	ft_putendl_fd("rrr", 1);
 	return (0);
 }

@@ -3,102 +3,88 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: yfellipe <yfellipe@student.42.rio>         +#+  +:+       +#+        */
+/*   By: aldantas <aldantas@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/11/09 11:23:24 by yfellipe          #+#    #+#             */
-/*   Updated: 2023/11/09 11:23:28 by yfellipe         ###   ########.fr       */
+/*   Created: 2023/11/13 17:14:56 by aldantas          #+#    #+#             */
+/*   Updated: 2024/01/14 14:11:13 by aldantas         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-static char	*read_line(char *backup, int fd)
+static char	*ft_check(const char *s, int i)
 {
-	char	*buffer;
-	int		count;
-
-	count = 1;
-	buffer = malloc(BUFFER_SIZE + 1);
-	if (!buffer)
-		return (NULL);
-	while (count > 0 && !ft_strchr(backup, '\n'))
+	while (*s)
 	{
-		count = read(fd, buffer, BUFFER_SIZE);
-		if (count < 0)
-		{
-			free(buffer);
-			return (NULL);
-		}
-		buffer[count] = '\0';
-		backup = ft_strjoin(backup, buffer);
+		if (*s == i)
+			return ((char *)s);
+		s++;
 	}
-	free(buffer);
+	if (i == '\0')
+		return ((char *)s);
+	return (0);
+}
+
+static char	*get_backup(char *line)
+{
+	size_t	count;
+	char	*backup;
+
+	count = 0;
+	while (line[count] != '\n' && line[count] != '\0')
+		count++;
+	if (line[count] == '\0')
+		return (0);
+	backup = ft_substr(line, count + 1, ft_strlen(line) - count);
+	if (*backup == '\0')
+	{
+		free(backup);
+		backup = NULL;
+	}
+	line[count + 1] = '\0';
 	return (backup);
 }
 
-static char	*cut(char *backup)
+static char	*get_line(int fd, char *buf, char *backup)
 {
-	size_t	i;
-	char	*line;
+	int		read_line;
+	char	*s_temp;
 
-	i = 0;
-	if (!*backup)
-		return (NULL);
-	while (backup[i] && backup[i] != '\n')
-		i++;
-	line = malloc(sizeof(char) * i + 2);
-	if (!(line))
-		return (NULL);
-	i = 0;
-	while (backup[i] && backup[i] != '\n')
+	read_line = 1;
+	while (read_line != '\0')
 	{
-		line[i] = backup[i];
-		i++;
+		read_line = read(fd, buf, BUFFER_SIZE);
+		if (read_line == -1)
+			return (0);
+		else if (read_line == 0)
+			break ;
+		buf[read_line] = '\0';
+		if (!backup)
+			backup = ft_strdup("");
+		s_temp = backup;
+		backup = ft_strjoin(s_temp, buf);
+		free(s_temp);
+		s_temp = NULL;
+		if (ft_check (buf, '\n'))
+			break ;
 	}
-	if (backup[i] == '\n')
-		line[i++] = '\n';
-	line[i] = '\0';
-	return (line);
-}
-
-static char	*remaining(char *backup)
-{
-	size_t	i;
-	char	*rest;
-	size_t	count;
-
-	i = 0;
-	while (backup[i] && backup[i] != '\n')
-		i++;
-	if (!(backup[i]))
-	{
-		free(backup);
-		return (NULL);
-	}
-	if (backup[i] == '\n')
-		i++;
-	rest = malloc(sizeof(char) * ft_strlen(backup) - i + 1);
-	if (!(rest))
-		return (NULL);
-	count = 0;
-	while (backup[i])
-		rest[count++] = backup[i++];
-	rest[count] = '\0';
-	free(backup);
-	return (rest);
+	return (backup);
 }
 
 char	*get_next_line(int fd)
 {
 	static char	*backup;
-	char		*my_line;
+	char		*buffer;
+	char		*line;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE < 0)
 		return (NULL);
-	backup = read_line(backup, fd);
-	if (!(backup))
+	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	if (!buffer)
 		return (NULL);
-	my_line = cut(backup);
-	backup = remaining(backup);
-	return (my_line);
+	line = get_line(fd, buffer, backup);
+	free(buffer);
+	if (!line)
+		return (NULL);
+	backup = get_backup(line);
+	return (line);
 }

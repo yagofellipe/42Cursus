@@ -14,11 +14,18 @@
 
 char	*ft_strchr(const char *s, int c)
 {
-	while (*s != (char)c)
+	unsigned char	*a;
+
+	if (c > 127)
+		c %= 256;
+	a = (unsigned char *) s;
+	while (*a)
 	{
-		if (!*s)
-			return (0);
-		s++;
+		if (*a == (unsigned char)c)
+			return ((char *)(a));
+		a++;
 	}
-	return ((char *)s);
+	if (*a == c)
+		return ((char *)(a));
+	return (NULL);
 }

@@ -12,63 +12,51 @@
 
 #include "libft.h"
 
-static long int	ft_len(int n)
+static int	sizenum(long n)
 {
-	int	tam;
+	int	count;
 
-	tam = 0;
-	if (n == 0)
-		return (1);
+	count = 0;
 	if (n < 0)
 	{
-		tam++;
 		n = -n;
+		count++;
 	}
-	while (n != 0)
+	else if (n == 0)
+		return (1);
+	while (n > 0)
 	{
-		tam++;
-		n /= 10;
+		count++;
+		n = n / 10;
 	}
-	return (tam);
-}
-
-static char	*ft_strcpy(char *dest, char *src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i] != '\0')
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
+	return (count);
 }
 
 char	*ft_itoa(int n)
 {
-	char				*str;
-	long int			len;
+	char	*str;
+	long	nb;
+	int		sign;
+	int		len;
 
-	len = ft_len(n);
+	nb = n;
+	sign = 0;
+	len = sizenum(nb);
+	if (nb < 0)
+	{
+		sign = 1;
+		nb = -nb;
+	}
 	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (str == NULL)
+	if (!str)
 		return (NULL);
-	str[len--] = '\0';
-	if (n == -2147483648)
-		ft_strcpy(str, "-2147483648");
-	if (n == 0)
-		str[0] = '0';
-	if (n < 0)
+	str[len] = '\0';
+	while (len--)
 	{
-		n = n * -1;
+		str[len] = (nb % 10) + '0';
+		nb /= 10;
+	}
+	if (sign == 1)
 		str[0] = '-';
-	}
-	while (n > 0)
-	{
-		str[len--] = 48 + (n % 10);
-		n = n / 10;
-	}
 	return (str);
 }

@@ -9,19 +9,14 @@
 /*   Updated: 2023/10/24 10:07:51 by yfellipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 #include "libft.h"
 
-void	ft_bzero(void *s, size_t n)
+void	*ft_bzero(void *s, size_t n)
 {
-	size_t	i;
-	char	*str;
+	char	*a;
 
-	i = 0;
-	str = s;
-	while (i < n)
-	{
-		str[i] = 0;
-		i++;
-	}
+	a = s;
+	while (n--)
+		*a++ = 0;
+	return (s);
 }
