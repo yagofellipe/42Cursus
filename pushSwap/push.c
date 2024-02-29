@@ -41,14 +41,16 @@ int	push_stack(t_list **stack_dst, t_list **stack_src)
 
 int	pa(t_list **stack_a, t_list **stack_b)
 {
-	push_stack(stack_a, stack_b);
-	ft_putstr_fd("pa", 1);
+	if (push_stack(stack_a, stack_b) == -1)
+		return (-1);
+	ft_putendl_fd("pa", 1);
 	return (0);
 }
 
 int	pb(t_list **stack_a, t_list **stack_b)
 {
-	push_stack(stack_b, stack_a);
-	ft_putstr_fd("pb", 1);
+	if (push_stack(stack_b, stack_a) == -1)
+		return (-1);
+	ft_putendl_fd("pb", 1);
 	return (0);
 }
